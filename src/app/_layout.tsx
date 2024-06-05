@@ -7,6 +7,7 @@ import {
   Barlow_700Bold,
 } from '@expo-google-fonts/barlow'
 import Loading from '@/components/loading'
+import { StatusBar } from 'expo-status-bar'
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -16,6 +17,9 @@ export default function Layout() {
   })
 
   return (
-    fontsLoaded ? <Slot /> : <Loading />
+    <>
+      <StatusBar style='dark' />
+      {fontsLoaded ? <Slot /> : <Loading />}
+    </>
   )
 }
