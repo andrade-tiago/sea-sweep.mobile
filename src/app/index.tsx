@@ -3,6 +3,7 @@ import shipImg from '@/assets/ship-draw.png'
 import CountryFlag from "react-native-country-flag";
 import MapView, { Marker } from "react-native-maps";
 import { ShipList } from "@/components/ship-list";
+import { Link } from "expo-router";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
 
       <View className="flex-row justify-between w-full gap-4">
         <View className="bg-medium_blue/30 rounded-xl flex-grow aspect-square">
+          <Link href="/partners">Partners</Link>
         </View>
 
         <View className="bg-medium_blue/30 rounded-xl flex-grow overflow-hidden aspect-square">
