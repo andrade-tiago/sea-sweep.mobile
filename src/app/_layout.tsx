@@ -18,7 +18,7 @@ export default function Layout() {
 
   return (
     <>
-      <StatusBar style='dark' />
+      <StatusBar style='light' />
       {fontsLoaded ? <Slot /> : <Loading />}
     </>
   )
