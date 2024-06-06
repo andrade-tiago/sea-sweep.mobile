@@ -1,8 +1,8 @@
 import { Image, Text, View } from "react-native";
-import sheepImg from '@/assets/sheep-draw.png'
+import shipImg from '@/assets/ship-draw.png'
 import CountryFlag from "react-native-country-flag";
 import MapView, { Marker } from "react-native-maps";
-import { ShipList } from "@/components/sheep-list";
+import { ShipList } from "@/components/ship-list";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
 
       <View className="bg-medium_blue/30 rounded-xl gap-2 w-full p-5">
         <Image
-          source={sheepImg}
+          source={shipImg}
           className="w-full h-48"
           resizeMode="contain"
         />
