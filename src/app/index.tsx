@@ -37,11 +37,11 @@ export default function Home() {
       </View>
 
       <View className="flex-row justify-between w-full gap-4">
-        <View className="bg-medium_blue/30 rounded-xl flex-grow aspect-square">
+        <View className="bg-medium_blue/30 rounded-xl flex-1 aspect-square">
           <Link href="/partners">Partners</Link>
         </View>
 
-        <View className="bg-medium_blue/30 rounded-xl flex-grow overflow-hidden aspect-square">
+        <View className="bg-medium_blue/30 rounded-xl flex-1 aspect-square overflow-hidden">
           <MapView style={{ width: '100%', height: '100%' }}>
             {/* <Marker /> */}
           </MapView>
