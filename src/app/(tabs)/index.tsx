@@ -7,11 +7,7 @@ import { Link } from "expo-router";
 
 export default function Home() {
   return (
-    <View className="flex-1 items-center gap-6 pt-20 px-8 bg-dark_blue">
-      <Text className="text-2xl font-bold text-gray-100">
-        Home
-      </Text>
-
+    <View className="flex-1 items-center gap-4 px-8 bg-dark_blue">
       <View className="bg-medium_blue/30 rounded-xl gap-2 w-full p-5">
         <Image
           source={shipImg}

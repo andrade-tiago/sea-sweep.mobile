@@ -2,33 +2,28 @@ import { VariantProps, tv } from "tailwind-variants";
 import { ActivityIndicator, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
 const button = tv({
-  base: 'rounded-xl p-5',
+  base: 'rounded-xl p-5 w-full',
   variants: {
-    size: {
-      normal: 'w-max',
-      full: 'w-full',
-    },
     color: {
-      dark: 'bg-dark',
-      light: 'bg-gray-100',
+      blue: 'bg-blue',
+      white: 'bg-gray-100',
     }
   },
   defaultVariants: {
-    size: 'full',
-    color: 'dark',
+    color: 'blue',
   },
 })
 
 const text = tv({
-  base: 'text-center font-bold text-xl',
+  base: 'text-center font-bold',
   variants: {
     color: {
-      dark: 'text-gray-100',
-      light: 'text-dark'
+      blue: 'text-gray-100',
+      white: 'text-dark_blue'
     },
   },
   defaultVariants: {
-    color: 'dark'
+    color: 'blue'
   }
 })
 
@@ -37,10 +32,10 @@ type ButtonProps = VariantProps<typeof button> & VariantProps<typeof text> & Tou
   isLoading?: boolean
 }
 
-export default function Button({ size, color, title, isLoading = false, ...props }: ButtonProps) {
+export default function Button({ color, title, isLoading = false, ...props }: ButtonProps) {
   return (
     <TouchableOpacity
-      className={button({ size, color })}
+      className={button({ color })}
       disabled={isLoading}
       activeOpacity={0.9}
       {...props}
