@@ -8,7 +8,6 @@ import {
 import Loading from '@/components/loading'
 import { StatusBar } from 'expo-status-bar'
 import { Stack } from 'expo-router'
-import { View } from 'react-native'
 import { colors } from '@/styles/colors'
 
 export default function Layout() {
@@ -36,6 +35,7 @@ export default function Layout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="ship-details" options={{ title: 'Detalhes do Navio' }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
+          <Stack.Screen name="register" options={{ headerShown: false }} />
         </Stack>
       ) : (
         <Loading />
