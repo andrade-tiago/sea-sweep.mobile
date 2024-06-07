@@ -9,6 +9,7 @@ import Loading from '@/components/loading'
 import { StatusBar } from 'expo-status-bar'
 import { Stack } from 'expo-router'
 import { View } from 'react-native'
+import { colors } from '@/styles/colors'
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -22,8 +23,18 @@ export default function Layout() {
       <StatusBar style='light' />
 
       {fontsLoaded ? (
-        <Stack>
+        <Stack screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.dark_blue,
+          },
+          headerTintColor: '#CCC',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#CCC',
+          },
+        }}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="ship-details" options={{ title: 'Detalhes do Navio' }} />
         </Stack>
       ) : (
         <Loading />
