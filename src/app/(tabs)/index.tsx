@@ -5,9 +5,18 @@ import MapView, { Marker } from "react-native-maps";
 import { ShipList } from "@/components/ship-list";
 import { PieChart } from "react-native-gifted-charts";
 import { colors } from "@/styles/colors";
+import { useContext } from "react";
+import { AppContext } from "@/contexts/app-context";
+import Loading from "@/components/loading";
 
-export default function Home() {
+export default function HomeScreen() {
   const collectedWasteKilos = 380
+  const { ships } = useContext(AppContext)
+
+  if (!ships || !ships[0]) {
+    console.warn('home: Nenhum navio :/')
+    return <Loading />
+  }
 
   return (
     <View className="flex-1 items-center gap-4 px-8 bg-dark_blue">
@@ -19,17 +28,17 @@ export default function Home() {
         />
 
         <Text className="font-bold text-xl text-gray-100">
-          HMM Algericas
+          {ships[0].shipName}
         </Text>
 
         <View className="flex-row justify-between">
           <Text className="text-gray-300">
-            IMO9863297
+          {ships[0].IMO}
           </Text>
           <View className="flex-row gap-2">
-            <CountryFlag isoCode="co" size={20} />
+            <CountryFlag isoCode={ships[0].flag} size={20} />
             <Text className="text-gray-300">
-              2020
+              {new Date(ships[0].createdAt).getFullYear()}
             </Text>
           </View>
         </View>

@@ -1,27 +1,15 @@
 import '@/styles/global.css'
-import {
-  useFonts,
-  Barlow_400Regular,
-  Barlow_500Medium,
-  Barlow_700Bold,
-} from '@expo-google-fonts/barlow'
-import Loading from '@/components/loading'
 import { StatusBar } from 'expo-status-bar'
 import { Stack } from 'expo-router'
 import { colors } from '@/styles/colors'
+import { AppProvider } from '@/contexts/app-context'
 
 export default function Layout() {
-  const [fontsLoaded] = useFonts({
-    Barlow_400Regular,
-    Barlow_500Medium,
-    Barlow_700Bold,
-  })
-
   return (
     <>
       <StatusBar style='light' />
 
-      {fontsLoaded ? (
+      <AppProvider>
         <Stack screenOptions={{
           headerStyle: {
             backgroundColor: colors.dark_blue,
@@ -37,9 +25,7 @@ export default function Layout() {
           <Stack.Screen name="login" options={{ headerShown: false }} />
           <Stack.Screen name="register" options={{ headerShown: false }} />
         </Stack>
-      ) : (
-        <Loading />
-      )}
+      </AppProvider>
     </>
   )
 }
