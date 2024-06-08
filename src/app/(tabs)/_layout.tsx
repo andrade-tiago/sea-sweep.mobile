@@ -47,13 +47,13 @@ export default function TabLayout() {
   useEffect(() => {
     async function ships() {
       try {
-        console.warn('tab-layout: tentei obter os navios')
+        console.log('tab-layout: tentei obter os navios')
 
         if (userSession) {
           const shipsList = await getShips(userSession.token)
           setShips(shipsList)
         } else {
-          console.warn('tab-layout: não tinha usuário pra eu pegar os navios :/')
+          console.log('tab-layout: não tinha usuário pra eu pegar os navios :/')
         }
       } catch {
         Alert.alert('Não foi possível carregar a lista de embarcações')
@@ -63,15 +63,16 @@ export default function TabLayout() {
   }, [userSession])
 
   if (!fontsLoaded || isLoadingUser) {
-    console.warn('tab-layout: carregando fontes e buscando usuário')
+    console.log('tab-layout: carregando fontes e buscando usuário')
     return <Loading />
   }
   if (!userSession) {
-    console.warn('tab-layout: faz login aí')
+    console.log('tab-layout: faz login aí')
     router.push('/login')
+    return <></>
   }
   if (!ships) {
-    console.warn('tab-layout: não tem navios T-T')
+    console.log('tab-layout: não tem navios T-T')
     return <Loading />
   }
 

@@ -23,14 +23,14 @@ export default function Register() {
     try {
       setIsLoading(true)
       await registerUser(name, email, password)
-      console.warn('register: registrei 8)')
+      console.log('register: registrei 8)')
 
       const login = await loginUser(email, password)
-      console.warn('register: loguei :D')
+      console.log('register: loguei :D')
       await setUserLoginStore(login)
-      console.warn('register: guardei login')
+      console.log('register: guardei login')
       setUserSession(login)
-      console.warn('register: logado :)')
+      console.log('register: logado :)')
 
       router.push('/')
     } catch {

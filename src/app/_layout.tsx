@@ -21,7 +21,7 @@ export default function Layout() {
           },
         }}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="ship-details" options={{ title: 'Detalhes do Navio' }} />
+          <Stack.Screen name="ship-details/[id]" options={{ title: 'Detalhes do Navio' }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
           <Stack.Screen name="register" options={{ headerShown: false }} />
         </Stack>

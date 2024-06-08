@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const { ships } = useContext(AppContext)
 
   if (!ships || !ships[0]) {
-    console.warn('home: Nenhum navio :/')
+    console.log('home: Nenhum navio :/')
     return <Loading />
   }
 
@@ -73,8 +73,9 @@ export default function HomeScreen() {
       <ShipList.Root>
         <ShipList.Header />
 
-        <ShipList.Item />
-        <ShipList.Item />
+        {ships.slice(0, 2).map(ship => (
+          <ShipList.Item ship={ship} key={ship.id} />
+        ))}
       </ShipList.Root>
     </View>
   )
