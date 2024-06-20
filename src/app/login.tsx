@@ -11,7 +11,7 @@ import loginUser from "@/services/login-user";
 import setUserLoginStore from "@/store/set-user-login";
 
 export default function Login() {
-  const { setUserSession } = useContext(AppContext)
+  const { userSession } = useContext(AppContext)
   const [rememberPass, setRememberPass] = useState<boolean>(false)
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -23,9 +23,9 @@ export default function Login() {
 
       const login = await loginUser(email, password)
       await setUserLoginStore(login)
-      setUserSession(login)
+      userSession?.setLoginData(login)
 
-      router.push('/')
+      router.replace('/')
     } catch {
       Alert.alert('Não foi possível realizar o login.')
     } finally {

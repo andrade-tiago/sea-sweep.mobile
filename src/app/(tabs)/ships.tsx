@@ -5,16 +5,16 @@ import { useContext } from "react";
 import { ScrollView } from "react-native";
 
 export default function Ships() {
-  const { ships } = useContext(AppContext)
+  const { shipsList } = useContext(AppContext)
 
-  if (!ships) {
+  if (!shipsList?.value) {
     return <Loading />
   }
 
   return (
     <ScrollView className="flex-1 px-8 gap-6 bg-dark_blue">
       <ShipList.Root>
-        {ships.map(ship => (
+        {shipsList.value.map(ship => (
           <ShipList.Item ship={ship} key={ship.id} />
         ))}
       </ShipList.Root>

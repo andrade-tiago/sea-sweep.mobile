@@ -8,14 +8,14 @@ import { useLocalSearchParams } from "expo-router";
 import Loading from "@/components/loading";
 
 export default function ShipDetails() {
-  const { ships } = useContext(AppContext)
+  const { shipsList } = useContext(AppContext)
   const { id } = useLocalSearchParams() as { id: string }
 
-  if (!ships) {
+  if (!shipsList?.value) {
     return <Loading />
   }
 
-  const ship = ships.find(ship => ship.id === id)
+  const ship = shipsList.value.find(ship => ship.id === id)
 
   if (!ship) {
     return <Loading />

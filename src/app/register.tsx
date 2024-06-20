@@ -12,12 +12,12 @@ import { AppContext } from "@/contexts/app-context";
 import setUserLoginStore from "@/store/set-user-login";
 
 export default function Register() {
-  const { setUserSession } = useContext(AppContext)
+  const { userSession } = useContext(AppContext)
   const [rememberPass, setRememberPass] = useState<boolean>(false)
-  const [ name, setName ] = useState<string>("")
-  const [ email, seEmail ] = useState<string>("")
-  const [ password, setPassword ] = useState<string>("")
-  const [ isLoading, setIsLoading ] = useState<boolean>(false)
+  const [name, setName] = useState<string>("")
+  const [email, seEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   async function handlerRegister() {
     try {
@@ -29,10 +29,10 @@ export default function Register() {
       console.log('register: loguei :D')
       await setUserLoginStore(login)
       console.log('register: guardei login')
-      setUserSession(login)
+      userSession?.setLoginData(login)
       console.log('register: logado :)')
 
-      router.push('/')
+      router.replace('/')
     } catch {
       Alert.alert('Não foi possível realizar o login.')
     } finally {

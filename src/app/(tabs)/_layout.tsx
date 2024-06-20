@@ -1,14 +1,13 @@
 import { colors } from '@/styles/colors';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import { Tabs, router } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { getHeaderTitle } from '@react-navigation/elements'
 import Header from '@/components/header';
 import Octicons from '@expo/vector-icons/Octicons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '@/contexts/app-context';
 import Loading from '@/components/loading';
-import getUserLoginStore from '@/store/get-user-login';
 import {
   Barlow_400Regular,
   Barlow_500Medium,
@@ -25,57 +24,36 @@ export default function TabLayout() {
     Barlow_700Bold,
   })
   const {
-    ships, setShips,
-    userSession, setUserSession
+    shipsList,
+    userSession,
   } = useContext(AppContext)
-  const [ isLoadingUser, setIsLoadingUser ] = useState<boolean>(true)
 
   useEffect(() => {
-    async function loginUser() {
-      if (!userSession) {
-        const userLogin = await getUserLoginStore()
-
-        if (userLogin) {
-          setUserSession(userLogin)
-        }
-      }
-      setIsLoadingUser(false)
-    }
-    loginUser()
-  }, [])
-
-  useEffect(() => {
-    async function ships() {
+    async function loadShips() {
       try {
-        console.log('tab-layout: tentei obter os navios')
-
-        if (userSession) {
-          const shipsList = await getShips(userSession.token)
-          setShips(shipsList)
-        } else {
-          console.log('tab-layout: não tinha usuário pra eu pegar os navios :/')
+        if (shipsList?.value) {
+          return
+        }
+        if (userSession?.loginData) {
+          const ships = await getShips(userSession.loginData.token)
+          shipsList?.setValue(ships)
         }
       } catch {
         Alert.alert('Não foi possível carregar a lista de embarcações')
       }
     }
-    ships()
+    loadShips()
   }, [userSession])
 
-  if (!fontsLoaded || isLoadingUser) {
-    console.log('tab-layout: carregando fontes e buscando usuário')
+  if (!fontsLoaded || userSession?.isLoading) {
     return <Loading />
   }
-  if (!userSession) {
-    console.log('tab-layout: faz login aí')
-    router.push('/login')
-    return <></>
+  if (!userSession?.loginData) {
+    return <Redirect href="/login" />
   }
-  if (!ships) {
-    console.log('tab-layout: não tem navios T-T')
+  if (!shipsList?.value) {
     return <Loading />
   }
-
   return (
     <Tabs screenOptions={{
       tabBarActiveTintColor: colors.blue,

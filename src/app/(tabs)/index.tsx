@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import shipImg from '@/assets/ship-draw.png'
 import CountryFlag from "react-native-country-flag";
-import MapView, { Marker } from "react-native-maps";
+import MapView from "react-native-maps";
 import { ShipList } from "@/components/ship-list";
 import { PieChart } from "react-native-gifted-charts";
 import { colors } from "@/styles/colors";
@@ -11,9 +11,9 @@ import Loading from "@/components/loading";
 
 export default function HomeScreen() {
   const collectedWasteKilos = 380
-  const { ships } = useContext(AppContext)
+  const { shipsList } = useContext(AppContext)
 
-  if (!ships || !ships[0]) {
+  if (!shipsList?.value || !shipsList.value[0]) {
     console.log('home: Nenhum navio :/')
     return <Loading />
   }
@@ -28,17 +28,17 @@ export default function HomeScreen() {
         />
 
         <Text className="font-bold text-xl text-gray-100">
-          {ships[0].shipName}
+          {shipsList.value[0].shipName}
         </Text>
 
         <View className="flex-row justify-between">
           <Text className="text-gray-300">
-          {ships[0].IMO}
+          {shipsList.value[0].IMO}
           </Text>
           <View className="flex-row gap-2">
-            <CountryFlag isoCode={ships[0].flag} size={20} />
+            <CountryFlag isoCode={shipsList.value[0].flag} size={20} />
             <Text className="text-gray-300">
-              {new Date(ships[0].createdAt).getFullYear()}
+              {new Date(shipsList.value[0].createdAt).getFullYear()}
             </Text>
           </View>
         </View>
@@ -73,7 +73,7 @@ export default function HomeScreen() {
       <ShipList.Root>
         <ShipList.Header />
 
-        {ships.slice(0, 2).map(ship => (
+        {shipsList.value.slice(0, 2).map(ship => (
           <ShipList.Item ship={ship} key={ship.id} />
         ))}
       </ShipList.Root>

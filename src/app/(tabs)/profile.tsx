@@ -1,4 +1,3 @@
-import Button from "@/components/button";
 import { Input } from "@/components/input";
 import { AppContext } from "@/contexts/app-context";
 import { useContext } from "react";
@@ -13,7 +12,7 @@ export default function Profile() {
         <Input.Root>
           <Input.Field
             placeholder="Albert Einstein"
-            value={userSession?.name}
+            value={userSession?.loginData?.name}
             editable={false}
           />
         </Input.Root>
@@ -22,7 +21,7 @@ export default function Profile() {
           <Input.Field
             placeholder="alberteinstein@email.com"
             keyboardType="email-address"
-            value={userSession?.email}
+            value={userSession?.loginData?.email}
             editable={false}
           />
         </Input.Root>
