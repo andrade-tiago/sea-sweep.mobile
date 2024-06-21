@@ -2,7 +2,7 @@
 
 <img
   src="./assets/images/icon.png"
-  style="height: 100; margin: 10px 0"
+  style="height: 100px; margin: 10px 0"
 />
 
 O SeaSweep consiste na ideia de um sistema acoplado a navios de containers responsável por coletar microplásticos durante sua rota original, sem afetá-lo. A tecnologia de sistemas para internet entra no **monitoramento dos navios e da quantidade de microplásticos e outros resíduos coletados por cada qual durante esse processo**, além do encaminhamento desses resíduos para serem reciclados por instituições parceiras.
